@@ -1,1 +1,1 @@
-# firebase-cows2
+# firebase-cows
