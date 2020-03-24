@@ -1,6 +1,7 @@
 import utils from '../../helpers/utils';
 import farmerData from '../../helpers/data/farmerData';
 import farmerComponent from '../farmer/farmer';
+import singleFarmer from '../singleFarmer/singleFarmer';
 
 const buildFarmers = () => {
   farmerData.getFarmers()
@@ -13,6 +14,7 @@ const buildFarmers = () => {
       });
       domString += '</div>';
       utils.printToDom('farmhouse', domString);
+      $('body').on('click', '.farmer-card', singleFarmer.buildFarmer);
     })
     .catch((err) => console.error('get farmers broke', err));
 };
