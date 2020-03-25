@@ -13,12 +13,26 @@ const getSingleFarmerWithCows = (farmerId) => new Promise((resolve, reject) => {
           farmerCows.forEach((farmerCow) => {
             const cow = allCows.find((x) => x.id === farmerCow.cowId);
             farmer.cows.push(cow);
+            console.log('farmer cows', farmer.cows);
           });
+          resolve(farmer);
         });
-        resolve(farmer);
       });
     })
     .catch((err) => reject(err));
 });
 
-export default { getSingleFarmerWithCows };
+const completelyRemoveCow = (cowId) => new Promise((resolve, reject) => {
+  cowData.deleteCow(cowId)
+    .then(() => {
+      farmerCowData.getFarmerCowsByCowId(cowId).then((farmerCows) => {
+        farmerCows.forEach((fCow) => {
+          farmerCowData.deleteFarmerCow(fCow.id);
+        });
+      });
+      resolve();
+    })
+    .catch((err) => reject(err));
+});
+
+export default { getSingleFarmerWithCows, completelyRemoveCow };
