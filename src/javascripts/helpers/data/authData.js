@@ -1,13 +1,14 @@
 import firebase from 'firebase/app';
-import pasture from '../../components/pasture/pasture';
-
 import 'firebase/auth';
+
+import pasture from '../../components/pasture/pasture';
 import farmHouse from '../../components/farmhouse/farmhouse';
 
 const authDiv = $('#auth');
 const pastureDiv = $('#pasture');
 const farmhouseDiv = $('#farmhouse');
-const singleFarmer = $('#single-farmer');
+const singleFarmerDiv = $('#single-farmer');
+const newCowDiv = $('#new-cow');
 const logoutButton = $('#navbar-logout-button');
 
 const checkLoginStatus = () => {
@@ -16,19 +17,21 @@ const checkLoginStatus = () => {
       // person is logged in
       authDiv.addClass('hide');
       pastureDiv.removeClass('hide');
-      logoutButton.removeClass('hide');
       farmhouseDiv.removeClass('hide');
-      singleFarmer.removeClass('hide');
-
+      singleFarmerDiv.removeClass('hide');
+      newCowDiv.removeClass('hide');
+      logoutButton.removeClass('hide');
       pasture.buildCows();
+      pasture.pastureEvents();
       farmHouse.buildFarmers();
     } else {
       // person is NOT logged in
       authDiv.removeClass('hide');
       pastureDiv.addClass('hide');
-      logoutButton.addClass('hide');
       farmhouseDiv.addClass('hide');
-      singleFarmer.addClass('hide');
+      singleFarmerDiv.addClass('hide');
+      newCowDiv.addClass('hide');
+      logoutButton.addClass('hide');
     }
   });
 };
