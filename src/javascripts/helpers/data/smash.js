@@ -1,4 +1,3 @@
-  
 import farmerData from './farmerData';
 import farmerCowData from './farmerCowData';
 import cowData from './cowData';
